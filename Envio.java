@@ -53,10 +53,23 @@ public class Envio
     /**
      * Devuelve el nº de paquetes en el envío
      * (dependerá de cuántos paquetes estén a null)
+     * 
      */
     public int getNumeroPaquetes() {
-        //TODO
-       return 0;
+        int numeroPaquetes = 0;
+        if (paquete1 == null & paquete2 == null & paquete3 == null){
+            numeroPaquetes = 0;
+        } 
+        else if (paquete2 == null & paquete3 == null ){
+            numeroPaquetes =1 ;
+        }
+        else if (paquete3 == null){
+            numeroPaquetes = 2 ;           
+        }
+        else{
+            numeroPaquetes = 3;
+        }
+        return numeroPaquetes;
 
     }
 
@@ -65,8 +78,7 @@ public class Envio
      * (tiene exactamente 3 paquetes)
      */
     public boolean envioCompleto() {
-       //TODO
-       return false;
+        return getNumeroPaquetes () == 3;
 
     }
 
@@ -78,25 +90,43 @@ public class Envio
      * si se añade como primero, segundo o tercero (no han de quedar huecos)
      */
     public void addPaquete(Paquete paquete) {
-       //TODO
-        
-
+        if(paquete1 == null){
+            this.paquete1 = paquete;
+        }
+        else if (paquete2 == null){
+            this.paquete2 = paquete;
+        }
+        else if (paquete3 == null){
+            this.paquete3 = null;
+        }
+        else{
+            System.out.println("no se admiten mas paquetes en el envio");
+        }
     }
-
     /**
      * Calcula y devuelve el coste total del envío
      * 
      * Para calcular el coste:
      *      - se obtiene el peso facturable de cada paquete 
      *      - se suman los pesos facturables de todos los paquetes del envío
-     *      - se calcula el coste en euros según el precio del Kg 
+     *      - se calcula el 
+     *      en euros según el precio del Kg 
      *      (cada Kg. no completo se cobra entero, 5.8 Kg. se cobran como 6, 5.3 Kg. se cobran como 6)
      *     
      *  
      */
     public double calcularCosteTotalEnvio() {
-        //TODO
-       return 0;
+        double coste = 0;
+        if (paquete1 != null){
+            coste = Math.ceil(paquete1.calcularPesoFacturable()) * PRECIO_KILO;
+        }
+        else if (paquete2!= null){
+            coste += Math.ceil(paquete2.calcularPesoFacturable()) * PRECIO_KILO;
+        }
+        else{ coste += Math.ceil(paquete3.calcularPesoFacturable() * PRECIO_KILO);
+            
+        }
+        return coste;
 
     }
 
@@ -106,8 +136,19 @@ public class Envio
      * (leer enunciado)
      */
     public String toString() {
-       //TODO
-       return null;
+        String coste = "Coste total del envio";
+        String paquetes = "Nº de paquetes: " + getNumeroPaquetes() + "\n";
+        if(paquete1!=null){
+            paquetes = paquete1.toString() + "\n";
+        }
+        if(paquete2!=null){
+            paquetes += paquete2.toString() + "\n";
+        }
+        if(paquete3!=null){
+            paquetes += paquete3.toString() + "\n";
+        }
+        paquetes += String.format("%20.s %10.2f($)\n",coste,calcularCosteTotalEnvio());
+        return paquetes;
     }
 
     /**
@@ -119,5 +160,4 @@ public class Envio
         System.out.println(this.toString());
     }
 
-    
 }

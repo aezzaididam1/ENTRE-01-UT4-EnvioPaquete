@@ -102,10 +102,11 @@ public class Paquete
      * Representación textual del paquete
      *  (leer enunciado)
      */
-    // public String toString() {
-        // return String.format();
+    public String toString() {
+        return dimension.toString() + String.format("\n%20s%10.2f(kg)\n%20s%10.2f(cm3)\n%20s%10.2f(kg)",
+        "Peso real",peso,"Volumen",calcularVolumen(),"peso volumetrico",calcularPesoVolumetrico());
 
-    // }
+    }
 
     /**
      * Muestra en pantalla el objeto actual
