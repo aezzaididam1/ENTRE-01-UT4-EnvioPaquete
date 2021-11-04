@@ -55,7 +55,8 @@ public class Dimension
      * (leer enunciado)
      */
     public String toString() {
-        String resultado =  String.format("%20s%10.2f\n%20s%10.2f\n%20s%10.2f","alto :",alto,"ancho :",ancho,"largo :",largo);
+        String resultado =  String.format("%20s%10.2f(cm)\n%20s%10.2f(cm)\n%20s%10.2f(cm)"
+        ,"alto :",alto,"ancho :",ancho,"largo :",largo);
         return resultado;
 
     }

@@ -97,7 +97,7 @@ public class Envio
             this.paquete2 = paquete;
         }
         else if (paquete3 == null){
-            this.paquete3 = null;
+            this.paquete3 = paquete;
         }
         else{
             System.out.println("no se admiten mas paquetes en el envio");
@@ -136,19 +136,20 @@ public class Envio
      * (leer enunciado)
      */
     public String toString() {
+        String paquete = "";
         String coste = "Coste total del envio";
         String paquetes = "Nº de paquetes: " + getNumeroPaquetes() + "\n";
-        if(paquete1!=null){
-            paquetes = paquete1.toString() + "\n";
+        if(paquete1 != null){
+            paquete = paquetes + paquete1.toString() + "\n\n";
         }
-        if(paquete2!=null){
-            paquetes += paquete2.toString() + "\n";
+        if(paquete2 != null){
+            paquete += paquete2.toString() + "\n\n";
         }
-        if(paquete3!=null){
-            paquetes += paquete3.toString() + "\n";
+        if(paquete3 != null){
+            paquete += paquete3.toString() + "\n\n";
         }
-        paquetes += String.format("%20.s %10.2f($)\n",coste,calcularCosteTotalEnvio());
-        return paquetes;
+        paquete += String.format("%20s%10.2f€\n",coste,calcularCosteTotalEnvio());
+        return paquete;
     }
 
     /**
